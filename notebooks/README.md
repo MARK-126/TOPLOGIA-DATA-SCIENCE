@@ -2,7 +2,27 @@
 
 Este directorio contiene tutoriales completos de Jupyter Notebook sobre Análisis Topológico de Datos aplicado a Neurociencias.
 
+**Total:** 7 tutoriales (900+ minutos de contenido interactivo)
+
+---
+
 ## 📚 Lista de Tutoriales
+
+### Tutorial 0: Setup y Quickstart ⭐ NUEVO
+**Archivo:** `00_Setup_Quickstart.ipynb`
+**Nivel:** Principiante
+**Duración:** 30-45 minutos
+
+**Contenido:**
+- Configuración del entorno paso a paso
+- Instalación y verificación de dependencias
+- Tu primer análisis TDA en 10 líneas
+- Troubleshooting de problemas comunes
+- Introducción a Jupyter Lab
+
+**Prerequisitos:** Python 3.8+
+
+---
 
 ### Tutorial 1: Introducción al TDA
 **Archivo:** `01_Introduccion_TDA.ipynb`
@@ -84,6 +104,26 @@ Este directorio contiene tutoriales completos de Jupyter Notebook sobre Análisi
 
 ---
 
+### Tutorial 6: Caso de Estudio End-to-End ⭐ NUEVO
+**Archivo:** `06_Caso_Estudio_Epilepsia.ipynb`
+**Nivel:** Avanzado
+**Duración:** 180-240 minutos
+
+**Contenido:**
+- Detección de crisis epilépticas con datos realistas
+- Pipeline completo de preprocesamiento profesional (EEG)
+- Análisis TDA aplicado a señales clínicas
+- Extracción de características topológicas, espectrales y temporales
+- Machine learning: entrenamiento, validación y evaluación rigurosa
+- Interpretación clínica de resultados
+- Instrucciones para usar datos reales de PhysioNet
+
+**Prerequisitos:** Todos los tutoriales anteriores, conocimientos de procesamiento de señales biomédicas
+
+**Aplicación práctica:** Este tutorial integra todo lo aprendido en un proyecto completo de clasificación binaria (ictal vs interictal) usando técnicas profesionales de neurociencia computacional.
+
+---
+
 ## 🚀 Cómo Usar los Tutoriales
 
 ### 1. Instalar Dependencias
@@ -110,11 +150,13 @@ Cada tutorial incluye ejercicios prácticos. ¡Completa todos para dominar los c
 
 ## 📖 Orden Recomendado
 
-1. **Tutorial 1** - Base fundamental
-2. **Tutorial 2** - Técnicas avanzadas
-3. **Tutorial 3** - Aplicación a conectividad
-4. **Tutorial 4** - Visualización avanzada
-5. **Tutorial 5** - Análisis temporal
+1. **Tutorial 0** - Setup y configuración ⭐
+2. **Tutorial 1** - Base fundamental
+3. **Tutorial 2** - Técnicas avanzadas
+4. **Tutorial 3** - Aplicación a conectividad
+5. **Tutorial 4** - Visualización avanzada
+6. **Tutorial 5** - Análisis temporal
+7. **Tutorial 6** - Caso de estudio completo ⭐
 
 ---
 
