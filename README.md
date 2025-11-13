@@ -27,11 +27,20 @@ El cerebro es un sistema complejo con propiedades topológicas fascinantes:
 
 ### 📚 Tutoriales Interactivos
 
+0. **Tutorial 0: Setup y Quickstart** ⭐ NUEVO
+   - Configuración del entorno
+   - Instalación de dependencias
+   - Verificación del setup
+   - Primer análisis TDA en 10 líneas
+   - Troubleshooting común
+   - **Duración:** 30-45 minutos
+
 1. **Tutorial 1: Introducción al TDA**
    - Conceptos básicos de topología
    - Complejos simpliciales
    - Homología y números de Betti
    - Ejemplos con datos sintéticos
+   - **Duración:** 90-120 minutos
 
 2. **Tutorial 2: Homología Persistente**
    - Filtraciones y diagramas de persistencia
@@ -56,6 +65,24 @@ El cerebro es un sistema complejo con propiedades topológicas fascinantes:
    - Análisis topológico de señales EEG
    - Detección de eventos neuronales
    - Clasificación de estados cognitivos
+   - **Duración:** 150-180 minutos
+
+6. **Tutorial 6: Caso de Estudio End-to-End** ⭐ NUEVO (En desarrollo)
+   - Pipeline completo con datos reales
+   - Detección de epilepsia con EEG (PhysioNet)
+   - Preprocesamiento profesional
+   - Análisis TDA aplicado
+   - Machine learning y evaluación
+   - Interpretación clínica
+   - **Duración:** 180+ minutos
+
+### 📊 Datos Reales
+
+Ver `data/DATA_SOURCES.md` para instrucciones de descarga de:
+- **PhysioNet CHB-MIT:** EEG de epilepsia
+- **Human Connectome Project:** fMRI
+- **OpenNeuro:** Múltiples estudios
+- **MNE Sample Data:** MEG/EEG
 
 ### 🛠️ Estructura del Proyecto
 
