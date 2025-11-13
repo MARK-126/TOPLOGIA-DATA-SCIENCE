@@ -36,42 +36,51 @@ Este directorio contiene tutoriales completos de Jupyter Notebook sobre Análisi
 
 ---
 
-### Tutorial 3: Conectividad Cerebral (Próximamente)
+### Tutorial 3: Conectividad Cerebral
 **Archivo:** `03_Conectividad_Cerebral.ipynb`
 **Nivel:** Avanzado
-**Duración:** 150+ minutos
+**Duración:** 150-180 minutos
 
-**Contenido planeado:**
-- Análisis de conectomas
+**Contenido:**
+- Análisis de conectomas cerebrales
 - Redes funcionales vs estructurales
 - Detección de comunidades topológicas
-- Análisis de matrices de correlación fMRI
+- Matrices de correlación fMRI
+- Biomarcadores topológicos
+
+**Prerequisitos:** Tutoriales 1 y 2, conocimientos de neuroimagen
 
 ---
 
-### Tutorial 4: Algoritmo Mapper (Próximamente)
+### Tutorial 4: Algoritmo Mapper
 **Archivo:** `04_Mapper_Algorithm.ipynb`
 **Nivel:** Avanzado
-**Duración:** 120+ minutos
+**Duración:** 120-150 minutos
 
-**Contenido planeado:**
-- Algoritmo Mapper para visualización
-- Aplicación a espacios de representación neural
-- Análisis de trayectorias cerebrales
-- Clustering topológico
+**Contenido:**
+- Algoritmo Mapper: filtro, cover, clustering, nerve
+- Visualización de datos de alta dimensión
+- Trayectorias de estados cerebrales
+- Detección de bifurcaciones neuronales
+- Aplicaciones a manifolds neuronales
+
+**Prerequisitos:** Tutoriales 1 y 2, álgebra lineal básica
 
 ---
 
-### Tutorial 5: Series Temporales (Próximamente)
+### Tutorial 5: Series Temporales EEG/fMRI
 **Archivo:** `05_Series_Temporales_EEG.ipynb`
 **Nivel:** Avanzado
-**Duración:** 150+ minutos
+**Duración:** 150-180 minutos
 
-**Contenido planeado:**
-- Embeddings de Takens
+**Contenido:**
+- Teorema de Takens y embeddings
 - Análisis topológico de señales EEG
-- Detección de eventos mediante TDA
-- Clasificación de estados cognitivos
+- Generación y clasificación de estados
+- Detección de eventos (crisis epilépticas, sueño)
+- Machine learning con características TDA
+
+**Prerequisitos:** Todos los tutoriales anteriores, procesamiento de señales
 
 ---
 
