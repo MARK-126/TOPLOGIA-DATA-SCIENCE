@@ -140,6 +140,22 @@ pip install -r requirements.txt
 jupyter lab
 ```
 
+### Paso 5: Verificar Instalación ✅
+
+Para verificar que todo funciona correctamente, ejecuta los scripts de prueba:
+
+```bash
+# Prueba rápida (~5 segundos)
+python test_tutorial0.py
+
+# Prueba completa (~2-3 minutos)
+python test_tutorial6.py
+```
+
+Si ambos tests pasan, ¡estás listo para comenzar! 🎉
+
+**Ver:** [TESTING.md](TESTING.md) para detalles sobre pruebas, problemas conocidos y soluciones.
+
 ## Uso Rápido
 
 ### Ejemplo: Análisis Topológico de Red Neuronal
