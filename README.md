@@ -35,18 +35,22 @@ El cerebro es un sistema complejo con propiedades topológicas fascinantes:
    - Troubleshooting común
    - **Duración:** 30-45 minutos
 
-1. **Tutorial 1: Introducción al TDA**
+1. **Tutorial 1: Introducción al TDA** 🎓 VERSIÓN INTERACTIVA
    - Conceptos básicos de topología
    - Complejos simpliciales
    - Homología y números de Betti
    - Ejemplos con datos sintéticos
+   - ⭐ **Versiones:** Original + v2 (ejercicios interactivos)
    - **Duración:** 90-120 minutos
 
-2. **Tutorial 2: Homología Persistente**
-   - Filtraciones y diagramas de persistencia
-   - Cálculo de características topológicas
-   - Aplicación a patrones de activación neuronal
-   - Análisis de estabilidad
+2. **Tutorial 2: Homología Persistente Avanzada** 🎓 VERSIÓN INTERACTIVA
+   - Filtraciones (Rips, Alpha, Čech)
+   - Distancias entre diagramas (Bottleneck, Wasserstein)
+   - Análisis de spike trains neuronales
+   - Características topológicas para ML
+   - Optimización para datasets grandes
+   - ⭐ **Versiones:** Original + v2 (ejercicios interactivos)
+   - **Duración:** 120-150 minutos
 
 3. **Tutorial 3: Conectividad Cerebral con TDA**
    - Análisis de redes funcionales cerebrales
@@ -75,6 +79,34 @@ El cerebro es un sistema complejo con propiedades topológicas fascinantes:
    - Machine learning y evaluación
    - Interpretación clínica
    - **Duración:** 180+ minutos
+
+### 🎓 Formato Interactivo (Tutoriales 1 y 2)
+
+Los **Tutoriales 1 y 2** están disponibles en dos versiones:
+
+#### **Versión Original** (`XX_Nombre.ipynb`)
+- Código completo proporcionado
+- Útil para referencia rápida
+- Ideal para revisión de conceptos
+
+#### **Versión Interactiva v2** (`XX_Nombre_v2.ipynb`) ⭐ RECOMENDADO
+Inspirado en Coursera Deep Learning Specialization:
+- **Ejercicios fill-in-the-blank:** Completa código guiado por comentarios
+- **Tests automáticos integrados:** Feedback instantáneo de tu implementación
+- **Tabla de contenidos clickeable:** Navegación fácil
+- **Cajas de resumen visual:** "Lo que debes recordar"
+- **Archivo de soluciones:** `TUTORIALX_SOLUTIONS.md` con explicaciones detalladas
+
+**Cómo usar las versiones v2:**
+1. Lee cada sección conceptual
+2. Implementa los ejercicios (marcados con `# YOUR CODE STARTS HERE`)
+3. Ejecuta el test automático
+4. Si pasa ✅, continúa. Si falla ❌, revisa tu código
+5. Solo si te atoras, consulta el archivo de soluciones
+
+**Documentación:**
+- `notebooks/REFACTORING_NOTES.md` - Historia de la refactorización
+- `notebooks/REFACTORING_GUIDE.md` - Guía para contribuidores
 
 ### 📊 Datos Reales
 

@@ -265,19 +265,32 @@ Para agregar un nuevo ejercicio:
 
 ---
 
-## 🔄 Roadmap Futuro
+## 🔄 Roadmap de Refactorización
 
-### Fase 2 (Próxima):
-- [ ] Refactorizar Tutorial 2 con mismo estilo
-- [ ] Crear imágenes/GIFs explicativos
-- [ ] Agregar más ejercicios opcionales
+### ✅ Fase 1: COMPLETADA (2025-01-13)
+- [x] Refactorizar Tutorial 1 con estilo interactivo
+- [x] Crear `tda_utils.py` y `tda_tests.py`
+- [x] Documentar proceso en `REFACTORING_NOTES.md`
+- [x] Crear `TUTORIAL1_SOLUTIONS.md`
 
-### Fase 3:
-- [ ] Aplicar a Tutoriales 3-6
+### ✅ Fase 2: COMPLETADA (2025-01-15)
+- [x] Refactorizar Tutorial 2 con mismo estilo
+- [x] Extender `tda_tests.py` con tests de Tutorial 2
+- [x] Crear `TUTORIAL2_SOLUTIONS.md`
+- [x] Agregar imágenes explicativas de alta calidad
+- [x] Crear `REFACTORING_GUIDE.md` para contribuidores
+
+### ⏳ Fase 3: En Progreso
+- [ ] Aplicar a Tutorial 3 (Conectividad Cerebral)
+- [ ] Aplicar a Tutorial 6 (Caso de Estudio Epilepsia)
+- [ ] Aplicar a Tutorial 4 (Mapper Algorithm)
+- [ ] Aplicar a Tutorial 5 (Series Temporales)
 - [ ] Crear mini-projects al final de cada tutorial
-- [ ] Sistema de badges/achievements
 
-### Fase 4:
+**Nota:** Ver `REFACTORING_GUIDE.md` para instrucciones detalladas de cómo completar Fase 3.
+
+### Fase 4: Futuro
+- [ ] Sistema de badges/achievements
 - [ ] Plataforma web interactiva
 - [ ] Leaderboard de estudiantes
 - [ ] Certificado digital al completar
