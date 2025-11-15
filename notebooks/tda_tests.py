@@ -416,3 +416,361 @@ def run_all_tests_tutorial2(functions_dict):
         print("\033[92m🎉 ¡FELICITACIONES! Todos los tests pasaron exitosamente\033[0m")
 
     return tests_passed, tests_failed
+
+
+# ============================================================================
+# TESTS PARA TUTORIAL 6: Caso de Estudio Epilepsia
+# ============================================================================
+
+def test_preprocess_eeg_tutorial6(target):
+    """Test para preprocesamiento de EEG"""
+    print("Ejecutando tests para preprocess_eeg...")
+    eeg_data = np.random.randn(23, 2560)
+    result = target(eeg_data, fs=256)
+    assert result.shape == eeg_data.shape, f"❌ Shape incorrecta: {result.shape}"
+    assert np.abs(np.mean(result)) < 0.5, "❌ Datos deben estar centrados"
+    assert 0.8 < np.std(result) < 1.2, "❌ Datos deben estar normalizados"
+    print("\033[92m✅ Todos los tests de preprocess_eeg pasaron!\033[0m")
+
+def test_extract_comprehensive_features_tutorial6(target):
+    """Test para extracción de características"""
+    print("Ejecutando tests para extract_comprehensive_features...")
+    eeg_data = np.random.randn(23, 2560)
+    features = target(eeg_data, fs=256)
+    assert 'n_cycles' in features or any('cycle' in k for k in features.keys()), "❌ Debe incluir info de ciclos"
+    assert len(features) >= 10, f"❌ Esperado >=10 features, obtuviste {len(features)}"
+    print("\033[92m✅ Todos los tests de extract_comprehensive_features pasaron!\033[0m")
+
+def test_train_topological_classifier(target):
+    """Test para clasificador"""
+    print("Ejecutando tests para train_topological_classifier...")
+    X = np.random.randn(100, 15)
+    y = np.random.randint(0, 2, 100)
+    clf, results = target(X, y, test_size=0.3)
+    assert clf is not None, "❌ Debe retornar clasificador"
+    assert 'accuracy' in results, "❌ results debe incluir 'accuracy'"
+    assert 0 <= results['accuracy'] <= 1, f"❌ Accuracy inválida: {results['accuracy']}"
+    print("\033[92m✅ Todos los tests de train_topological_classifier pasaron!\033[0m")
+
+
+# ============================================================================
+# TESTS PARA TUTORIAL 3: Conectividad Cerebral
+# ============================================================================
+
+def test_build_connectivity_matrix(target):
+    """Test para construcción de matriz de conectividad"""
+    print("Ejecutando tests para build_connectivity_matrix...")
+    
+    # Test 1: Shape correcto
+    timeseries = np.random.randn(30, 200)
+    conn_matrix, diagrams = target(timeseries, threshold=0.3)
+    assert conn_matrix.shape == (30, 30), f"❌ Shape esperada (30,30), obtuviste {conn_matrix.shape}"
+    
+    # Test 2: Matriz simétrica
+    assert np.allclose(conn_matrix, conn_matrix.T), "❌ Matriz debe ser simétrica"
+    
+    # Test 3: Valores en rango correcto
+    assert np.all(conn_matrix >= -1) and np.all(conn_matrix <= 1), "❌ Valores deben estar en [-1, 1]"
+    
+    # Test 4: Diagramas de persistencia
+    assert len(diagrams) >= 2, "❌ Debe retornar al menos H0 y H1"
+    
+    print("\033[92m✅ Todos los tests de build_connectivity_matrix pasaron!\033[0m")
+
+
+def test_detect_communities_topological(target):
+    """Test para detección de comunidades"""
+    print("Ejecutando tests para detect_communities_topological...")
+    
+    # Test 1: Clustering básico
+    conn_matrix = np.random.rand(60, 60)
+    conn_matrix = (conn_matrix + conn_matrix.T) / 2  # Simétrica
+    detected_labels, ari_score = target(conn_matrix, n_clusters=3, true_labels=None)
+    
+    assert len(detected_labels) == 60, f"❌ Debe retornar 60 etiquetas, obtuviste {len(detected_labels)}"
+    assert len(set(detected_labels)) <= 3, "❌ Debe haber máximo 3 clusters"
+    
+    # Test 2: Con etiquetas verdaderas
+    true_labels = np.array([0]*20 + [1]*20 + [2]*20)
+    detected_labels, ari_score = target(conn_matrix, n_clusters=3, true_labels=true_labels)
+    assert ari_score is not None, "❌ Debe calcular ARI score"
+    assert -1 <= ari_score <= 1, f"❌ ARI debe estar en [-1,1], obtuviste {ari_score}"
+    
+    print("\033[92m✅ Todos los tests de detect_communities_topological pasaron!\033[0m")
+
+
+def test_compare_states_topologically(target):
+    """Test para comparación de estados"""
+    print("Ejecutando tests para compare_states_topologically...")
+    
+    # Crear estados sintéticos
+    states = {
+        'state1': np.random.randn(50, 200),
+        'state2': np.random.randn(50, 200),
+        'state3': np.random.randn(50, 200)
+    }
+    
+    distance_matrix, all_diagrams = target(states)
+    
+    # Test 1: Shape de matriz de distancias
+    assert distance_matrix.shape == (3, 3), f"❌ Shape esperada (3,3), obtuviste {distance_matrix.shape}"
+    
+    # Test 2: Matriz simétrica
+    assert np.allclose(distance_matrix, distance_matrix.T), "❌ Matriz debe ser simétrica"
+    
+    # Test 3: Diagonal cero
+    assert np.allclose(np.diag(distance_matrix), 0), "❌ Diagonal debe ser cero"
+    
+    # Test 4: Diagramas para cada estado
+    assert len(all_diagrams) == 3, f"❌ Debe haber 3 diagramas, obtuviste {len(all_diagrams)}"
+    
+    print("\033[92m✅ Todos los tests de compare_states_topologically pasaron!\033[0m")
+
+
+# ============================================================================
+# TESTS PARA TUTORIAL 4: Mapper Algorithm
+# ============================================================================
+
+def test_compute_filter_function(target):
+    """Test para funciones de filtro"""
+    print("Ejecutando tests para compute_filter_function...")
+    
+    data = np.random.randn(100, 10)
+    
+    # Test 1: Filtro PCA
+    filter_pca = target(data, method='pca')
+    assert filter_pca.shape == (100,), f"❌ Shape esperada (100,), obtuviste {filter_pca.shape}"
+    
+    # Test 2: Filtro Density
+    filter_density = target(data, method='density', n_neighbors=5)
+    assert filter_density.shape == (100,), "❌ Shape incorrecta para density"
+    assert np.all(filter_density >= 0), "❌ Densidades deben ser positivas"
+    
+    # Test 3: Filtro Coordinate
+    filter_coord = target(data, method='coordinate', coord_idx=0)
+    assert np.allclose(filter_coord, data[:, 0]), "❌ Coordinate filter debe retornar columna seleccionada"
+    
+    print("\033[92m✅ Todos los tests de compute_filter_function pasaron!\033[0m")
+
+
+def test_build_mapper_graph(target):
+    """Test para construcción de grafo Mapper"""
+    print("Ejecutando tests para build_mapper_graph...")
+    
+    data = np.random.randn(200, 5)
+    filter_values = np.random.randn(200)
+    
+    G, nodes_data = target(data, filter_values, n_intervals=10, overlap=0.3)
+    
+    # Test 1: Tipo de grafo
+    assert isinstance(G, nx.Graph), "❌ Debe retornar grafo de NetworkX"
+    
+    # Test 2: Nodos existen
+    assert G.number_of_nodes() > 0, "❌ Grafo debe tener al menos un nodo"
+    
+    # Test 3: Diccionario de nodos
+    assert isinstance(nodes_data, dict), "❌ nodes_data debe ser diccionario"
+    
+    # Test 4: Consistencia
+    assert len(nodes_data) == G.number_of_nodes(), "❌ Número de nodos inconsistente"
+    
+    print("\033[92m✅ Todos los tests de build_mapper_graph pasaron!\033[0m")
+
+
+def test_visualize_mapper(target):
+    """Test para visualización de Mapper"""
+    print("Ejecutando tests para visualize_mapper...")
+    
+    # Crear grafo simple
+    G = nx.Graph()
+    G.add_node(0, size=10)
+    G.add_node(1, size=15)
+    G.add_edge(0, 1)
+    
+    nodes_data = {0: np.array([0, 1, 2]), 1: np.array([3, 4, 5])}
+    filter_values = np.array([0.5, 0.6, 0.7, 1.0, 1.1, 1.2])
+    
+    fig, ax = target(G, nodes_data, filter_values, title="Test")
+    
+    # Test 1: Retorna figura y eje
+    assert fig is not None, "❌ Debe retornar figura"
+    assert ax is not None, "❌ Debe retornar eje"
+    
+    # Test 2: Título correcto
+    assert ax.get_title() == "Test", "❌ Título incorrecto"
+    
+    plt.close(fig)
+    
+    print("\033[92m✅ Todos los tests de visualize_mapper pasaron!\033[0m")
+
+
+# ============================================================================
+# TESTS PARA TUTORIAL 5: Series Temporales EEG
+# ============================================================================
+
+def test_takens_embedding(target):
+    """Test para embedding de Takens"""
+    print("Ejecutando tests para takens_embedding...")
+    
+    # Señal sintética
+    signal = np.sin(np.linspace(0, 4*np.pi, 1000))
+    
+    # Test 1: Con delay especificado
+    embedded, delay_used = target(signal, delay=10, dimension=3)
+    assert embedded.shape[1] == 3, f"❌ Dimensión esperada 3, obtuviste {embedded.shape[1]}"
+    assert delay_used == 10, f"❌ Delay usado debe ser 10, obtuviste {delay_used}"
+    
+    # Test 2: Delay automático
+    embedded_auto, delay_auto = target(signal, delay=None, dimension=3)
+    assert embedded_auto.shape[1] == 3, "❌ Dimensión incorrecta"
+    assert delay_auto > 0, f"❌ Delay automático debe ser > 0, obtuviste {delay_auto}"
+    
+    # Test 3: Shape correcto
+    expected_length = len(signal) - (3 - 1) * delay_used
+    assert embedded.shape[0] == expected_length, f"❌ Shape incorrecta"
+    
+    print("\033[92m✅ Todos los tests de takens_embedding pasaron!\033[0m")
+
+
+def test_sliding_window_persistence(target):
+    """Test para análisis con ventanas deslizantes"""
+    print("Ejecutando tests para sliding_window_persistence...")
+    
+    # Señal sintética
+    signal = np.random.randn(2000)
+    
+    time_pts, n_cycles, max_pers = target(signal, window_size=500, stride=100, fs=250)
+    
+    # Test 1: Longitudes consistentes
+    assert len(time_pts) == len(n_cycles) == len(max_pers), "❌ Arrays deben tener misma longitud"
+    
+    # Test 2: Valores razonables
+    assert np.all(n_cycles >= 0), "❌ Número de ciclos debe ser >= 0"
+    assert np.all(max_pers >= 0), "❌ Persistencia debe ser >= 0"
+    
+    # Test 3: Número esperado de ventanas
+    expected_windows = (len(signal) - 500) // 100 + 1
+    assert len(time_pts) <= expected_windows, f"❌ Demasiadas ventanas"
+    
+    print("\033[92m✅ Todos los tests de sliding_window_persistence pasaron!\033[0m")
+
+
+def test_classify_states_with_tda(target):
+    """Test para clasificación con TDA"""
+    print("Ejecutando tests para classify_states_with_tda...")
+    
+    # Dataset sintético
+    signals_dict = {
+        'normal': [np.random.randn(1250) for _ in range(20)],
+        'seizure': [np.random.randn(1250) * 2 for _ in range(20)],
+        'sleep': [np.random.randn(1250) * 0.5 for _ in range(20)]
+    }
+    
+    clf, accuracy, report = target(signals_dict, test_size=0.3)
+    
+    # Test 1: Clasificador entrenado
+    assert clf is not None, "❌ Debe retornar clasificador"
+    
+    # Test 2: Accuracy en rango válido
+    assert 0 <= accuracy <= 1, f"❌ Accuracy inválida: {accuracy}"
+    
+    # Test 3: Reporte existe
+    assert report is not None, "❌ Debe retornar reporte"
+    
+    print("\033[92m✅ Todos los tests de classify_states_with_tda pasaron!\033[0m")
+
+
+# ============================================================================
+# FUNCIÓN HELPER PARA EJECUTAR TODOS LOS TESTS DE TUTORIAL 3
+# ============================================================================
+
+def run_all_tests_tutorial3(functions_dict):
+    """Ejecuta todos los tests para Tutorial 3"""
+    print("\n" + "="*60)
+    print("EJECUTANDO TESTS PARA TUTORIAL 3: Conectividad Cerebral")
+    print("="*60 + "\n")
+    
+    test_functions = [
+        ('build_connectivity_matrix', test_build_connectivity_matrix),
+        ('detect_communities_topological', test_detect_communities_topological),
+        ('compare_states_topologically', test_compare_states_topologically)
+    ]
+    
+    tests_passed = 0
+    tests_failed = 0
+    
+    for func_name, test_func in test_functions:
+        if func_name in functions_dict:
+            try:
+                test_func(functions_dict[func_name])
+                tests_passed += 1
+            except AssertionError as e:
+                print(f"\033[91m{e}\033[0m")
+                tests_failed += 1
+        else:
+            print(f"\033[93m⚠️  Función '{func_name}' no encontrada\033[0m")
+    
+    print(f"\nRESUMEN: {tests_passed} pasaron, {tests_failed} fallaron\n")
+    return tests_passed, tests_failed
+
+
+def run_all_tests_tutorial4(functions_dict):
+    """Ejecuta todos los tests para Tutorial 4"""
+    print("\n" + "="*60)
+    print("EJECUTANDO TESTS PARA TUTORIAL 4: Mapper Algorithm")
+    print("="*60 + "\n")
+    
+    test_functions = [
+        ('compute_filter_function', test_compute_filter_function),
+        ('build_mapper_graph', test_build_mapper_graph),
+        ('visualize_mapper', test_visualize_mapper)
+    ]
+    
+    tests_passed = 0
+    tests_failed = 0
+    
+    for func_name, test_func in test_functions:
+        if func_name in functions_dict:
+            try:
+                test_func(functions_dict[func_name])
+                tests_passed += 1
+            except AssertionError as e:
+                print(f"\033[91m{e}\033[0m")
+                tests_failed += 1
+        else:
+            print(f"\033[93m⚠️  Función '{func_name}' no encontrada\033[0m")
+    
+    print(f"\nRESUMEN: {tests_passed} pasaron, {tests_failed} fallaron\n")
+    return tests_passed, tests_failed
+
+
+def run_all_tests_tutorial5(functions_dict):
+    """Ejecuta todos los tests para Tutorial 5"""
+    print("\n" + "="*60)
+    print("EJECUTANDO TESTS PARA TUTORIAL 5: Series Temporales EEG")
+    print("="*60 + "\n")
+    
+    test_functions = [
+        ('takens_embedding', test_takens_embedding),
+        ('sliding_window_persistence', test_sliding_window_persistence),
+        ('classify_states_with_tda', test_classify_states_with_tda)
+    ]
+    
+    tests_passed = 0
+    tests_failed = 0
+    
+    for func_name, test_func in test_functions:
+        if func_name in functions_dict:
+            try:
+                test_func(functions_dict[func_name])
+                tests_passed += 1
+            except AssertionError as e:
+                print(f"\033[91m{e}\033[0m")
+                tests_failed += 1
+        else:
+            print(f"\033[93m⚠️  Función '{func_name}' no encontrada\033[0m")
+    
+    print(f"\nRESUMEN: {tests_passed} pasaron, {tests_failed} fallaron\n")
+    return tests_passed, tests_failed
+
+
