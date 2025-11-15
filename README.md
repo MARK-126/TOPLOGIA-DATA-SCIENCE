@@ -104,9 +104,13 @@ Inspirado en Coursera Deep Learning Specialization:
 4. Si pasa ✅, continúa. Si falla ❌, revisa tu código
 5. Solo si te atoras, consulta el archivo de soluciones
 
-**Documentación:**
+**Documentación del proyecto:**
 - `notebooks/REFACTORING_NOTES.md` - Historia de la refactorización
-- `notebooks/REFACTORING_GUIDE.md` - Guía para contribuidores
+- `notebooks/REFACTORING_GUIDE.md` - Guía completa para contribuidores
+- `REFACTORING_SUMMARY.md` - Resumen ejecutivo del proyecto
+- `NEXT_STEPS.md` - Hoja de ruta para continuar
+
+**¿Quieres contribuir?** Ver `REFACTORING_GUIDE.md` para instrucciones detalladas de cómo refactorizar los tutoriales 3-6.
 
 ### 📊 Datos Reales
 
